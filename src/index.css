@@ -18,7 +18,7 @@
   input[type="email"],
   input[type="password"],
   select {
-    @apply mt-1 block w-full rounded-md border-0 bg-gray-100 px-4 py-3 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-red-600 sm:text-sm sm:leading-6;
+    @apply mt-1 block w-full rounded-md border-0 bg-gray-100 px-4 py-3 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-700 sm:text-sm sm:leading-6;
   }
 
   select {
@@ -41,15 +41,15 @@
 
 @layer components {
   .btn-primary {
-    @apply h-fit w-full rounded-md bg-red-500 px-4 py-3 font-medium text-white hover:bg-red-600;
+    @apply h-fit w-full rounded-md bg-green-600 px-4 py-3 font-medium text-white hover:bg-green-700;
   }
 
   .btn-primary:disabled {
-    @apply cursor-not-allowed bg-red-400 hover:bg-red-400;
+    @apply cursor-not-allowed bg-green-500 hover:bg-green-500;
   }
 
   .btn-secondary {
-    @apply border border-red-200 bg-red-100 p-2 text-red-500 hover:bg-red-500 hover:text-white;
+    @apply border border-green-300 bg-green-200 p-2 text-green-600 hover:bg-green-600 hover:text-white;
   }
 
   .btn-secondary:disabled {
