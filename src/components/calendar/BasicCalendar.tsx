@@ -14,6 +14,21 @@ const BasicCalendar = () => {
       start,
       end,
     },
+    {
+      title: "Training",
+      start,
+      end,
+    },
+    {
+      title: "Training",
+      start,
+      end,
+    },
+    {
+      title: "Training",
+      start,
+      end,
+    },
   ]);
 
   return (
@@ -34,6 +49,7 @@ const BasicCalendar = () => {
         date: "Datum",
         time: "Tijd",
       }}
+      popup
     />
   );
 };
