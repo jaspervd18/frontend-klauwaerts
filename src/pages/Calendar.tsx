@@ -5,9 +5,9 @@ import ErrorIsLoading from "../components/misc/ErrorIsLoading";
 import useAll from "../hooks/useAll";
 
 const Calendar = () => {
-  const { isLoading, error, data } = useAll<Event>("events");
+  const { isLoading, error, data: events } = useAll<Event>("events");
 
-  console.log(data);
+  console.log(events);
 
   if (error || isLoading)
     return <ErrorIsLoading text='events' isLoading={isLoading} />;
@@ -16,7 +16,7 @@ const Calendar = () => {
     <>
       <Title Icon={CalendarDaysIcon} text='Kalender' />
       <div className='mt-8'>
-        <BasicCalendar />
+        <BasicCalendar events={events} />
       </div>
     </>
   );

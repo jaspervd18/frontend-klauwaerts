@@ -1,36 +1,10 @@
-import { useState } from "react";
 import { Calendar, Event, momentLocalizer } from "react-big-calendar";
-import addHours from "date-fns/addHours";
-import startOfHour from "date-fns/startOfHour";
 import moment from "moment";
 
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
-const BasicCalendar = () => {
-  const [events, setEvents] = useState<Event[]>([
-    {
-      title: "Training",
-      start,
-      end,
-    },
-    {
-      title: "Training",
-      start,
-      end,
-    },
-    {
-      title: "Training",
-      start,
-      end,
-    },
-    {
-      title: "Training",
-      start,
-      end,
-    },
-  ]);
-
+const BasicCalendar = ({ events }: { events: Event[] }) => {
   return (
     <Calendar
       defaultView='month'
@@ -53,11 +27,6 @@ const BasicCalendar = () => {
     />
   );
 };
-
-const endOfHour = (date: Date): Date => addHours(startOfHour(date), 1);
-const now = new Date();
-const start = endOfHour(now);
-const end = addHours(start, 2);
 
 moment.locale("nl-BE", {
   week: {
