@@ -5,7 +5,7 @@ import ErrorIsLoading from "../components/misc/ErrorIsLoading";
 import useAll from "../hooks/useAll";
 
 const Calendar = () => {
-  const { isLoading, error, data: events } = useAll<Event>("events");
+  const { isLoading, error, data: events } = useAll<BasicEvent>("events");
 
   console.log(events);
 

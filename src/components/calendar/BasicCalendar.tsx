@@ -1,15 +1,17 @@
-import { Calendar, Event, momentLocalizer } from "react-big-calendar";
+import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
-const BasicCalendar = ({ events }: { events: Event[] }) => {
+const BasicCalendar = ({ events }: { events: BasicEvent[] }) => {
+  const calendarEvents: CalendarEvent[] = events.map(({ id, ...rest }) => rest);
+
   return (
     <Calendar
       defaultView='month'
       culture='nl'
-      events={events}
+      events={calendarEvents}
       localizer={localizer}
       style={{ height: "100vh", width: "100%" }}
       messages={{
@@ -24,6 +26,7 @@ const BasicCalendar = ({ events }: { events: Event[] }) => {
         time: "Tijd",
       }}
       popup
+      views={["month"]}
     />
   );
 };
