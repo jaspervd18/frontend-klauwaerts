@@ -1,8 +1,5 @@
 import { useState } from "react";
 import { Calendar, Event, momentLocalizer } from "react-big-calendar";
-import withDragAndDrop, {
-  withDragAndDropProps,
-} from "react-big-calendar/lib/addons/dragAndDrop";
 import addHours from "date-fns/addHours";
 import startOfHour from "date-fns/startOfHour";
 import moment from "moment";
@@ -19,30 +16,12 @@ const BasicCalendar = () => {
     },
   ]);
 
-  const onEventResize: withDragAndDropProps["onEventResize"] = (data) => {
-    const { start, end } = data;
-
-    setEvents((currentEvents) => {
-      const firstEvent = {
-        start: new Date(start),
-        end: new Date(end),
-      };
-      return [...currentEvents, firstEvent];
-    });
-  };
-
-  const onEventDrop: withDragAndDropProps["onEventDrop"] = (data) => {
-    console.log(data);
-  };
-
   return (
-    <DnDCalendar
+    <Calendar
       defaultView='month'
+      culture='nl'
       events={events}
       localizer={localizer}
-      onEventDrop={onEventDrop}
-      onEventResize={onEventResize}
-      resizable
       style={{ height: "100vh", width: "100%" }}
       messages={{
         next: "Volgende",
@@ -70,7 +49,5 @@ moment.locale("nl-BE", {
   },
 });
 const localizer = momentLocalizer(moment);
-
-const DnDCalendar = withDragAndDrop(Calendar);
 
 export default BasicCalendar;
