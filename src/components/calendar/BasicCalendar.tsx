@@ -9,14 +9,13 @@ const BasicCalendar = ({
   openModal,
 }: {
   events: BasicEvent[];
-  openModal: () => void;
+  openModal: (day: Date) => void;
 }) => {
   const calendarEvents: CalendarEvent[] = events.map(({ id, ...rest }) => rest);
 
   return (
     <Calendar
       defaultView='month'
-      culture='nl'
       events={calendarEvents}
       localizer={localizer}
       style={{ height: "100vh", width: "100%" }}
@@ -25,14 +24,9 @@ const BasicCalendar = ({
         previous: "Vorige",
         today: "Vandaag",
         month: "Maand",
-        week: "Week",
-        day: "Dag",
-        agenda: "Agenda",
-        date: "Datum",
-        time: "Tijd",
       }}
-      onSelectSlot={() => {
-        openModal();
+      onSelectSlot={(slotDetails) => {
+        openModal(slotDetails.start);
       }}
       selectable
       popup

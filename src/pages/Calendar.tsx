@@ -5,14 +5,19 @@ import ErrorIsLoading from "../components/misc/ErrorIsLoading";
 import useAll from "../hooks/useAll";
 import { Modal } from "../components/misc/Modal";
 import { useState } from "react";
+import useSaveEvent from "../hooks/useSaveEvent";
 
 const Calendar = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [day, setDay] = useState<Date | undefined>(undefined);
 
   const { isLoading, error, data: events } = useAll<BasicEvent>("events");
 
-  const openModal = async () => {
+  const { mutateAsync, data: newEvent } = useSaveEvent();
+
+  const openModal = async (day: Date) => {
     setModalOpen(true);
+    setDay(day);
   };
 
   const closeModal = async () => {
@@ -28,7 +33,9 @@ const Calendar = () => {
       <div className='mt-8'>
         <BasicCalendar events={events} openModal={openModal} />
       </div>
-      {modalOpen && <Modal closeModal={closeModal} />}
+      {modalOpen && (
+        <Modal closeModal={closeModal} mutateAsync={mutateAsync} day={day} />
+      )}
     </>
   );
 };

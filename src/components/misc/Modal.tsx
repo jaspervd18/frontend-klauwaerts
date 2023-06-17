@@ -1,3 +1,4 @@
+import { UseMutateAsyncFunction } from "@tanstack/react-query";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 interface EventInput {
@@ -6,7 +7,15 @@ interface EventInput {
   end: Date;
 }
 
-export const Modal = ({ closeModal }: { closeModal: () => void }) => {
+export const Modal = ({
+  closeModal,
+  mutateAsync,
+  day,
+}: {
+  closeModal: () => void;
+  mutateAsync: UseMutateAsyncFunction<BasicEvent, unknown, SaveEvent, unknown>;
+  day: Date | undefined;
+}) => {
   const {
     register,
     formState: { errors },
@@ -14,7 +23,12 @@ export const Modal = ({ closeModal }: { closeModal: () => void }) => {
   } = useForm<EventInput>();
 
   const onSubmit: SubmitHandler<EventInput> = (data) => {
-    console.log(data);
+    mutateAsync({
+      ...data,
+      id: undefined,
+      start: day,
+      end: day,
+    });
     closeModal();
   };
 
@@ -34,7 +48,7 @@ export const Modal = ({ closeModal }: { closeModal: () => void }) => {
                 <div>
                   <label>Titel</label>
                   <input
-                    type='number'
+                    type='text'
                     placeholder='Titel'
                     {...register("title", {
                       required: "Titel is verplicht",
@@ -43,34 +57,6 @@ export const Modal = ({ closeModal }: { closeModal: () => void }) => {
                   />
                   <p className='h-5 text-sm text-gray-400 empty:invisible'>
                     {errors?.title?.message}
-                  </p>
-                </div>
-                <div>
-                  <label>Start</label>
-                  <input
-                    type='date'
-                    placeholder='start'
-                    {...register("start", {
-                      required: "Start is verplicht",
-                    })}
-                    aria-invalid={errors?.start ? "true" : "false"}
-                  />
-                  <p className='h-5 text-sm text-gray-400 empty:invisible'>
-                    {errors?.start?.message}
-                  </p>
-                </div>
-                <div>
-                  <label>End</label>
-                  <input
-                    type='date'
-                    placeholder='End'
-                    {...register("end", {
-                      required: "Einde is verplicht",
-                    })}
-                    aria-invalid={errors?.end ? "true" : "false"}
-                  />
-                  <p className='h-5 text-sm text-gray-400 empty:invisible'>
-                    {errors?.end?.message}
                   </p>
                 </div>
                 <div className='mt-4 flex justify-end gap-6'>
