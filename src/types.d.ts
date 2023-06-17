@@ -18,6 +18,7 @@ type CalendarEvent = {
 
 type BasicEvent = CalendarEvent & {
   id: number;
+  trainer?: string;
 };
 
 type SaveEvent = {

@@ -3,8 +3,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 interface EventInput {
   title: string;
-  start: Date;
-  end: Date;
+  start: string;
+  end: string;
 }
 
 export const Modal = ({
@@ -14,7 +14,7 @@ export const Modal = ({
 }: {
   closeModal: () => void;
   mutateAsync: UseMutateAsyncFunction<BasicEvent, unknown, SaveEvent, unknown>;
-  day: Date | undefined;
+  day: Date;
 }) => {
   const {
     register,
@@ -23,11 +23,17 @@ export const Modal = ({
   } = useForm<EventInput>();
 
   const onSubmit: SubmitHandler<EventInput> = (data) => {
+    const start = new Date(day);
+    start.setHours(Number(data.start.split(":")[0]));
+    start.setMinutes(Number(data.start.split(":")[1]));
+    const end = new Date(day);
+    end.setHours(Number(data.end.split(":")[0]));
+    end.setMinutes(Number(data.end.split(":")[1]));
     mutateAsync({
       ...data,
       id: undefined,
-      start: day,
-      end: day,
+      start,
+      end,
     });
     closeModal();
   };
@@ -59,6 +65,37 @@ export const Modal = ({
                     {errors?.title?.message}
                   </p>
                 </div>
+                <div className='flex w-full justify-between gap-4'>
+                  <div className='w-full'>
+                    <label>Start</label>
+                    <input
+                      type='time'
+                      placeholder='Start'
+                      {...register("start", {
+                        required: "Start is verplicht",
+                      })}
+                      aria-invalid={errors?.start ? "true" : "false"}
+                    />
+                    <p className='h-5 text-sm text-gray-400 empty:invisible'>
+                      {errors?.start?.message}
+                    </p>
+                  </div>
+                  <div className='w-full'>
+                    <label>Einde</label>
+                    <input
+                      type='time'
+                      placeholder='Einde'
+                      {...register("end", {
+                        required: "Einde is verplicht",
+                      })}
+                      aria-invalid={errors?.end ? "true" : "false"}
+                    />
+                    <p className='h-5 text-sm text-gray-400 empty:invisible'>
+                      {errors?.end?.message}
+                    </p>
+                  </div>
+                </div>
+
                 <div className='mt-4 flex justify-end gap-6'>
                   <button
                     onClick={closeModal}

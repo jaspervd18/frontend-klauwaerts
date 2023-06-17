@@ -4,7 +4,7 @@ import { formatDate, formatTime } from "../../utils/format";
 const TrainingCard = ({ id, title, start, end }: BasicEvent) => {
   return (
     <div className='rounded-lg bg-gray-100 px-4 py-6 sm:flex sm:items-center sm:justify-between sm:px-6'>
-      <dl className='flex-auto space-y-6 divide-y divide-gray-200 sm:grid sm:grid-cols-4 sm:gap-x-4 sm:space-y-0 sm:divide-y-0 lg:w-3/4 lg:flex-none lg:gap-x-8'>
+      <dl className='flex-auto space-y-6 divide-y divide-gray-200 sm:grid sm:grid-cols-4 sm:gap-x-4 sm:space-y-0 sm:divide-y-0 lg:w-10/12 lg:flex-none lg:gap-x-8'>
         <div className='flex flex-shrink justify-between sm:block sm:gap-1'>
           <dt>Dag</dt>
           <dd>{formatDate(start)}</dd>
