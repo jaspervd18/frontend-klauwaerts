@@ -9,7 +9,7 @@ import NavItem from "./NavItem";
 
 const nav = [
   { name: "Kalender", to: "/" },
-  // { name: "Track & Trace", to: "/track&trace" },
+  { name: "Trainingen", to: "/trainingen" },
 ];
 
 const userNav = [

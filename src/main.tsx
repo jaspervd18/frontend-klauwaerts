@@ -13,6 +13,7 @@ import Calendar from "./pages/Calendar";
 import NotFound from "./pages/misc/NotFound";
 import ErrorBoundary from "./pages/misc/ErrorBoundary";
 import Layout from "./components/layout/Layout";
+import Trainings from "./pages/training/Trainings";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,10 @@ const router = createBrowserRouter(
       <Route path='/' element={<Layout />}>
         <Route errorElement={<ErrorBoundary />}>
           <Route index element={<Calendar />} />
+          <Route path='trainingen'>
+            <Route index element={<Trainings />} />
+            {/* <Route path=':id' element={<Bestelling />} /> */}
+          </Route>
           <Route path='*' element={<NotFound />} />
         </Route>
       </Route>

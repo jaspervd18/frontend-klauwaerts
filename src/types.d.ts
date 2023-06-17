@@ -12,8 +12,8 @@ type EndpointById = "events";
 
 type CalendarEvent = {
   title: string;
-  start: dateFns;
-  end: dateFns;
+  start: Date;
+  end: Date;
 };
 
 type BasicEvent = CalendarEvent & {
@@ -23,8 +23,8 @@ type BasicEvent = CalendarEvent & {
 type SaveEvent = {
   id?: number;
   title: string;
-  start: dateFns;
-  end: dateFns;
+  start: Date;
+  end: Date;
 };
 
 /**************

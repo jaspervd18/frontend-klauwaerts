@@ -25,7 +25,7 @@ const Calendar = () => {
   };
 
   if (error || isLoading)
-    return <ErrorIsLoading text='events' isLoading={isLoading} />;
+    return <ErrorIsLoading text='kalender' isLoading={isLoading} />;
 
   return (
     <>
