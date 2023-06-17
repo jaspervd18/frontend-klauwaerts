@@ -1,6 +1,7 @@
 import { formatDate, formatTime } from "../../utils/format";
+import TrainingEdit from "./TrainingEdit";
 
-const TrainingDetails = ({ title, start, end }: BasicEvent) => (
+const TrainingDetails = ({ title, start, end, trainer }: BasicEvent) => (
   <section>
     <div className='mb-4 rounded-lg bg-gray-100 px-4 py-6 lg:px-12'>
       <dl className='gap-y-6 divide-y divide-gray-200 lg:flex lg:flex-none lg:justify-between lg:gap-x-4 lg:gap-y-0 lg:divide-y-0 xl:gap-x-8'>
@@ -26,18 +27,7 @@ const TrainingDetails = ({ title, start, end }: BasicEvent) => (
         </div>
       </dl>
     </div>
-    {/* {status === 0 && (
-      <BestellingWijzigen
-        bestellingId={id}
-        defaultValues={{
-          doosId: doos?.id || 0,
-          straat: leverAdres.straat,
-          huisnummer: leverAdres.huisnummer,
-          postcode: leverAdres.postcode,
-          land: leverAdres.land,
-        }}
-      />
-    )} */}
+    <TrainingEdit trainer={trainer} />
   </section>
 );
 
