@@ -14,6 +14,7 @@ import NotFound from "./pages/misc/NotFound";
 import ErrorBoundary from "./pages/misc/ErrorBoundary";
 import Layout from "./components/layout/Layout";
 import Trainings from "./pages/training/Trainings";
+import Training from "./pages/training/Training";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,7 +24,7 @@ const router = createBrowserRouter(
           <Route index element={<Calendar />} />
           <Route path='trainingen'>
             <Route index element={<Trainings />} />
-            {/* <Route path=':id' element={<Bestelling />} /> */}
+            <Route path=':id' element={<Training />} />
           </Route>
           <Route path='*' element={<NotFound />} />
         </Route>

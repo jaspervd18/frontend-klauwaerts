@@ -3,11 +3,12 @@ import { useParams } from "react-router-dom";
 import useById from "../../hooks/useById";
 import ErrorIsLoading from "../../components/misc/ErrorIsLoading";
 import Title from "../../components/misc/Title";
+import TrainingDetails from "../../components/training/TrainingDetails";
 
-const Bestelling = () => {
+const Training = () => {
   const { id } = useParams() as unknown as { id: number };
   const {
-    data: bestelling,
+    data: training,
     error,
     isLoading,
   } = useById<BasicEvent>("events", id);
@@ -18,9 +19,9 @@ const Bestelling = () => {
   return (
     <>
       <Title Icon={ClipboardDocumentIcon} text={`Training #${id}`} />
-      <BestellingDetails {...bestelling} />
+      <TrainingDetails {...training} />
     </>
   );
 };
 
-export default Bestelling;
+export default Training;
