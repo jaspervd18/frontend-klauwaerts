@@ -4,7 +4,13 @@ import moment from "moment";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
-const BasicCalendar = ({ events }: { events: BasicEvent[] }) => {
+const BasicCalendar = ({
+  events,
+  openModal,
+}: {
+  events: BasicEvent[];
+  openModal: () => void;
+}) => {
   const calendarEvents: CalendarEvent[] = events.map(({ id, ...rest }) => rest);
 
   return (
@@ -25,6 +31,10 @@ const BasicCalendar = ({ events }: { events: BasicEvent[] }) => {
         date: "Datum",
         time: "Tijd",
       }}
+      onSelectSlot={() => {
+        openModal();
+      }}
+      selectable
       popup
       views={["month"]}
     />
