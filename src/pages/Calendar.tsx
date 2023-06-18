@@ -9,9 +9,9 @@ import useSaveEvent from "../hooks/useSaveEvent";
 
 const Calendar = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [day, setDay] = useState<Date | undefined>(undefined);
+  const [day, setDay] = useState<Date>(new Date());
 
-  const { isLoading, error, data: events } = useAll<BasicEvent>("events");
+  const { isLoading, error, data } = useAll<any>("events");
 
   const { mutateAsync, data: newEvent } = useSaveEvent();
 
@@ -31,7 +31,7 @@ const Calendar = () => {
     <>
       <Title Icon={CalendarDaysIcon} text='Kalender' />
       <div className='mt-8'>
-        <BasicCalendar events={events} openModal={openModal} />
+        <BasicCalendar events={data} openModal={openModal} />
       </div>
       {modalOpen && (
         <Modal closeModal={closeModal} mutateAsync={mutateAsync} day={day} />

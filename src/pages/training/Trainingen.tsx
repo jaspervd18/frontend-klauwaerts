@@ -6,31 +6,31 @@ import {
 } from "@heroicons/react/24/outline";
 import ErrorIsLoading from "../../components/misc/ErrorIsLoading";
 import Title from "../../components/misc/Title";
-import useAll from "../../hooks/useAll";
 import TrainingCard from "../../components/training/TrainingCard";
 import { formatMonthYear } from "../../utils/format";
+import useEvents from "../../hooks/useEvents";
 
 const Trainingen = () => {
-  const [maand, setMaand] = useState(new Date().getMonth() + 1);
-  const [jaar, setJaar] = useState(new Date().getFullYear());
+  const [month, setMonth] = useState(new Date().getMonth() + 1);
+  const [year, setYear] = useState(new Date().getFullYear());
 
-  const { isLoading, error, data: events } = useAll<BasicEvent>("events");
+  const { isLoading, error, data } = useEvents(month, year);
 
-  const vorigeMaand = () => {
-    if (maand === 1) {
-      setMaand(12);
-      setJaar(jaar - 1);
+  const prevMonth = () => {
+    if (month === 1) {
+      setMonth(12);
+      setYear(year - 1);
     } else {
-      setMaand(maand - 1);
+      setMonth(month - 1);
     }
   };
 
-  const volgendeMaand = () => {
-    if (maand === 12) {
-      setMaand(1);
-      setJaar(jaar + 1);
+  const nextMonth = () => {
+    if (month === 12) {
+      setMonth(1);
+      setYear(year + 1);
     } else {
-      setMaand(maand + 1);
+      setMonth(month + 1);
     }
   };
 
@@ -43,22 +43,23 @@ const Trainingen = () => {
     <>
       <Title Icon={QueueListIcon} text='Trainingen' />
       <div className='mx-auto flex w-60 items-center justify-between gap-2'>
-        <button onClick={vorigeMaand}>
+        <button onClick={prevMonth}>
           <BackwardIcon className='h-5 w-5 shrink-0 stroke-1 hover:text-gray-500' />
         </button>
         <div className='text-xl font-semibold'>
-          {formatMonthYear(maand, jaar)}
+          {formatMonthYear(month, year)}
         </div>
-        <button onClick={volgendeMaand}>
+        <button onClick={nextMonth}>
           <ForwardIcon className='h-5 w-5 shrink-0 stroke-1 hover:text-gray-500' />
         </button>
       </div>
       <section className='mt-4 flex flex-col gap-2'>
-        {events
+        {data.events
           ?.sort(
-            (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
+            (a: BasicEvent, b: BasicEvent) =>
+              new Date(a.start).getTime() - new Date(b.start).getTime()
           )
-          .map((event) => (
+          .map((event: BasicEvent) => (
             <TrainingCard key={event.id} {...event} />
           ))}
       </section>

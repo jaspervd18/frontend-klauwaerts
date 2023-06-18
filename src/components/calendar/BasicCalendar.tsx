@@ -8,10 +8,12 @@ const BasicCalendar = ({
   events,
   openModal,
 }: {
-  events: BasicEvent[];
+  events: any;
   openModal: (day: Date) => void;
 }) => {
-  const calendarEvents: CalendarEvent[] = events.map(({ id, ...rest }) => rest);
+  console.log(events.events);
+
+  const calendarEvents: BasicEvent[] = events.map(({ id, ...rest }) => rest);
 
   return (
     <Calendar
