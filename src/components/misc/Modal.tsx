@@ -103,10 +103,7 @@ export const Modal = ({
                   >
                     Annuleer
                   </button>
-                  <button
-                    className='inline-flex w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:ml-0 sm:w-auto sm:text-sm'
-                    type='submit'
-                  >
+                  <button className='btn-primary' type='submit'>
                     Verifieer
                   </button>
                 </div>

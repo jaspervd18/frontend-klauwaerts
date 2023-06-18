@@ -4,7 +4,7 @@
 
 type EndpointAll = "events";
 
-type EndpointById = "events";
+type EndpointById = "events" | "trainers";
 
 /*************
  * API Types *
@@ -18,7 +18,7 @@ type CalendarEvent = {
 
 type BasicEvent = CalendarEvent & {
   id: number;
-  trainer?: string;
+  trainer?: Trainer;
 };
 
 type SaveEvent = {
@@ -26,6 +26,12 @@ type SaveEvent = {
   title: string;
   start: Date;
   end: Date;
+  trainerId?: trainerId;
+};
+
+type Trainer = {
+  id: number;
+  name: string;
 };
 
 /**************

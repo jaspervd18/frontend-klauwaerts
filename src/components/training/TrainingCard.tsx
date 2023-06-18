@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { formatDate, formatTime } from "../../utils/format";
+import useById from "../../hooks/useById";
 
 const TrainingCard = ({ id, title, start, end }: BasicEvent) => {
+  const { data: trainer, error, isLoading } = useById<Trainer>("trainers", id);
+
   return (
     <div className='rounded-lg bg-gray-100 px-4 py-6 sm:flex sm:items-center sm:justify-between sm:px-6'>
       <dl className='flex-auto space-y-6 divide-y divide-gray-200 sm:grid sm:grid-cols-4 sm:gap-x-4 sm:space-y-0 sm:divide-y-0 lg:w-10/12 lg:flex-none lg:gap-x-8'>
@@ -23,7 +26,7 @@ const TrainingCard = ({ id, title, start, end }: BasicEvent) => {
         </div>
         <div className='flex justify-between pt-6 sm:block sm:gap-1 sm:pt-0'>
           <dt>Trainer</dt>
-          <dd>-</dd>
+          {error || isLoading ? <dd>-</dd> : <dd>{trainer?.name}</dd>}
         </div>
       </dl>
       <Link

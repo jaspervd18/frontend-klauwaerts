@@ -23,11 +23,11 @@ const TrainingDetails = ({ title, start, end, trainer }: BasicEvent) => (
         </div>
         <div className='flex justify-between gap-1 py-4 lg:block'>
           <dt>Trainer</dt>
-          <dd>-</dd>
+          {trainer ? <dd>{trainer.name}</dd> : <dd>-</dd>}
         </div>
       </dl>
     </div>
-    <TrainingEdit trainer={trainer} />
+    {/* <TrainingEdit trainer={trainer} /> */}
   </section>
 );
 

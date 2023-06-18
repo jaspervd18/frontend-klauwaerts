@@ -4,7 +4,7 @@ import Title from "../../components/misc/Title";
 import useAll from "../../hooks/useAll";
 import TrainingCard from "../../components/training/TrainingCard";
 
-const Trainings = () => {
+const Trainingen = () => {
   const { isLoading, error, data: events } = useAll<BasicEvent>("events");
 
   console.log(events);
@@ -30,4 +30,4 @@ const Trainings = () => {
   );
 };
 
-export default Trainings;
+export default Trainingen;
