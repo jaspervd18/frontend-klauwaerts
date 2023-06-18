@@ -26,4 +26,14 @@ const formatDateTime = (date: Date | string) => {
   return format(new Date(date), "dd/MM/yyyy - HH:mm");
 };
 
-export { formatCurrency, formatDate, formatDateTime, formatTime };
+const formatMonthYear = (month: number, year: number) => {
+  return format(new Date(year, month - 1), "MMMM yyyy", { locale: nl });
+};
+
+export {
+  formatCurrency,
+  formatDate,
+  formatDateTime,
+  formatTime,
+  formatMonthYear,
+};
