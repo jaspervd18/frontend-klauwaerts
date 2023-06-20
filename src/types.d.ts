@@ -2,7 +2,7 @@
  * Endpoint types *
  ******************/
 
-type EndpointAll = "events";
+type EndpointAll = "events" | "trainers";
 
 type EndpointById = "events" | "trainers";
 
@@ -37,6 +37,10 @@ type Trainer = {
 /**************
  * Misc Types *
  **************/
+
+type TFormInput = BasicEvent & {
+  trainerId: number;
+};
 
 type LimitOffset = {
   limit?: number;
