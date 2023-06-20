@@ -1,20 +1,40 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import useSaveEvent from "../../hooks/useSaveEvent";
+import TrainerSelect from "../misc/TrainerSelect";
+import Input from "../misc/Input";
 
-const TrainingEdit = ({ trainer }: { trainer: string | undefined }) => {
+type TrainingWijzigenProps = {
+  defaultValues: TFormInput;
+};
+
+const TrainingEdit = ({ defaultValues }: TrainingWijzigenProps) => {
   const {
     register,
     formState: { errors, isDirty },
     handleSubmit,
     reset,
-  } = useForm<BasicEvent>();
+  } = useForm<TFormInput>({
+    defaultValues,
+  });
 
   const { mutate } = useSaveEvent();
 
-  const onSubmit: SubmitHandler<BasicEvent> = (data) => {
-    // mutate({ ...data, doosId: Number(data.doosId), id: bestellingId });
-    // reset({ ...data, doosId: Number(data.doosId) });
+  const onSubmit: SubmitHandler<TFormInput> = (data) => {
+    const start = new Date();
+    start.setHours(Number(data.start.split(":")[0]));
+    start.setMinutes(Number(data.start.split(":")[1]));
+    const end = new Date();
+    end.setHours(Number(data.end.split(":")[0]));
+    end.setMinutes(Number(data.end.split(":")[1]));
+    mutate({
+      ...data,
+      trainerId: Number(data.trainerId),
+      id: defaultValues.id,
+    });
+    reset({ ...data, trainerId: Number(data.trainerId) });
   };
+
+  console.log(defaultValues);
 
   return (
     <form
@@ -22,18 +42,37 @@ const TrainingEdit = ({ trainer }: { trainer: string | undefined }) => {
       className='grid grid-cols-6 gap-4 py-6'
     >
       <div className='col-span-6 sm:col-span-4'>
-        <label>Trainer</label>
-        <input
+        <Input
+          label='Titel'
           type='text'
-          placeholder='Trainer'
-          {...register("trainer", {
-            required: "Trainer is verplicht",
-          })}
-          aria-invalid={errors?.trainer ? "true" : "false"}
+          register={register}
+          registerName='title'
+          error={errors.title}
+          autoComplete='title'
         />
-        <p className='h-5 text-sm text-gray-400 empty:invisible'>
-          {errors?.trainer?.message}
-        </p>
+      </div>
+      <div className='col-span-3 sm:col-span-2'>
+        <Input
+          label='Start'
+          type='time'
+          register={register}
+          registerName='start'
+          error={errors.start}
+          autoComplete='start'
+        />
+      </div>
+      <div className='col-span-3 sm:col-span-2'>
+        <Input
+          label='Einde'
+          type='time'
+          register={register}
+          registerName='end'
+          error={errors.end}
+          autoComplete='end'
+        />
+      </div>
+      <div className='col-span-3 sm:col-span-2'>
+        <TrainerSelect register={register} error={errors.trainerId} />
       </div>
       <button
         type='submit'
