@@ -27,7 +27,7 @@ const Input = <T extends FieldValues>({
     <label>{label}</label>
     <input
       type={type}
-      autoComplete={autoComplete}
+      defaultValue={autoComplete}
       {...register(registerName, {
         required: `${label} is verplicht`,
       })}

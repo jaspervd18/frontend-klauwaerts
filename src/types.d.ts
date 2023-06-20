@@ -40,6 +40,8 @@ type Trainer = {
 
 type TFormInput = BasicEvent & {
   trainerId: number;
+  startTime: string;
+  endTime: string;
 };
 
 type LimitOffset = {

@@ -24,16 +24,22 @@ export const Modal = ({
 
   const onSubmit: SubmitHandler<EventInput> = (data) => {
     const start = new Date(day);
+
     start.setHours(Number(data.start.split(":")[0]));
     start.setMinutes(Number(data.start.split(":")[1]));
+    console.log(start);
+
     const end = new Date(day);
     end.setHours(Number(data.end.split(":")[0]));
     end.setMinutes(Number(data.end.split(":")[1]));
+
+    console.log(end);
+
     mutateAsync({
       ...data,
       id: undefined,
-      start,
-      end,
+      start: start,
+      end: end,
     });
     closeModal();
   };

@@ -2,6 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import useSaveEvent from "../../hooks/useSaveEvent";
 import TrainerSelect from "../misc/TrainerSelect";
 import Input from "../misc/Input";
+import { formatTime } from "../../utils/format";
 
 type TrainingWijzigenProps = {
   defaultValues: TFormInput;
@@ -20,21 +21,21 @@ const TrainingEdit = ({ defaultValues }: TrainingWijzigenProps) => {
   const { mutate } = useSaveEvent();
 
   const onSubmit: SubmitHandler<TFormInput> = (data) => {
-    const start = new Date();
-    start.setHours(Number(data.start.split(":")[0]));
-    start.setMinutes(Number(data.start.split(":")[1]));
-    const end = new Date();
-    end.setHours(Number(data.end.split(":")[0]));
-    end.setMinutes(Number(data.end.split(":")[1]));
+    const start = new Date(defaultValues.start);
+    const end = new Date(defaultValues.end);
+    start.setHours(Number(data.startTime.split(":")[0]));
+    start.setMinutes(Number(data.startTime.split(":")[1]));
+    end.setHours(Number(data.endTime.split(":")[0]));
+    end.setMinutes(Number(data.endTime.split(":")[1]));
     mutate({
       ...data,
       trainerId: Number(data.trainerId),
       id: defaultValues.id,
+      start,
+      end,
     });
     reset({ ...data, trainerId: Number(data.trainerId) });
   };
-
-  console.log(defaultValues);
 
   return (
     <form
@@ -48,7 +49,7 @@ const TrainingEdit = ({ defaultValues }: TrainingWijzigenProps) => {
           register={register}
           registerName='title'
           error={errors.title}
-          autoComplete='title'
+          autoComplete={defaultValues.title}
         />
       </div>
       <div className='col-span-3 sm:col-span-2'>
@@ -56,9 +57,9 @@ const TrainingEdit = ({ defaultValues }: TrainingWijzigenProps) => {
           label='Start'
           type='time'
           register={register}
-          registerName='start'
+          registerName='startTime'
           error={errors.start}
-          autoComplete='start'
+          autoComplete={formatTime(defaultValues.start)}
         />
       </div>
       <div className='col-span-3 sm:col-span-2'>
@@ -66,9 +67,9 @@ const TrainingEdit = ({ defaultValues }: TrainingWijzigenProps) => {
           label='Einde'
           type='time'
           register={register}
-          registerName='end'
+          registerName='endTime'
           error={errors.end}
-          autoComplete='end'
+          autoComplete={formatTime(defaultValues.end)}
         />
       </div>
       <div className='col-span-3 sm:col-span-2'>

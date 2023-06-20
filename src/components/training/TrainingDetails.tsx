@@ -34,6 +34,8 @@ const TrainingDetails = ({ id, title, start, end, trainer }: BasicEvent) => (
         start: start,
         end: end,
         trainerId: trainer?.id || 0,
+        startTime: formatTime(start),
+        endTime: formatTime(end),
       }}
     />
   </section>
