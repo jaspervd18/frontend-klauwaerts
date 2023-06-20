@@ -15,7 +15,7 @@ const getById = async (endpoint: EndpointById, id: number) => {
 };
 
 const getEventsByMonthYear = async (month: number, year: number) => {
-  return (await axios.get(`/events?month=${month}?year=${year}`)).data;
+  return (await axios.get(`/events?month=${month}&year=${year}`)).data;
 };
 
 const postNewEvent = async (event: SaveEvent) => {
