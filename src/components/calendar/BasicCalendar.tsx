@@ -7,13 +7,17 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 const BasicCalendar = ({
   events,
   openModal,
+  setMonth,
+  setYear,
 }: {
-  events: any;
+  events: BasicEvent[];
   openModal: (day: Date) => void;
+  setMonth: (month: number) => void;
+  setYear: (month: number) => void;
 }) => {
-  console.log(events.events);
-
-  const calendarEvents: BasicEvent[] = events.map(({ id, ...rest }) => rest);
+  const calendarEvents: CalendarEvent[] = events.map(
+    ({ id, trainer, ...rest }) => rest
+  );
 
   return (
     <Calendar
@@ -29,6 +33,10 @@ const BasicCalendar = ({
       }}
       onSelectSlot={(slotDetails) => {
         openModal(slotDetails.start);
+      }}
+      onNavigate={(date) => {
+        setMonth(date.getMonth() + 1);
+        setYear(date.getFullYear());
       }}
       selectable
       popup

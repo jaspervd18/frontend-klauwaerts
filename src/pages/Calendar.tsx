@@ -2,22 +2,24 @@ import { CalendarDaysIcon } from "@heroicons/react/24/outline";
 import Title from "../components/misc/Title";
 import BasicCalendar from "../components/calendar/BasicCalendar";
 import ErrorIsLoading from "../components/misc/ErrorIsLoading";
-import useAll from "../hooks/useAll";
 import { Modal } from "../components/misc/Modal";
 import { useState } from "react";
 import useSaveEvent from "../hooks/useSaveEvent";
+import useEvents from "../hooks/useEvents";
 
 const Calendar = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [day, setDay] = useState<Date>(new Date());
+  const [selectedDay, setSelectedDay] = useState<Date>(new Date());
+  const [month, setMonth] = useState(new Date().getMonth() + 1);
+  const [year, setYear] = useState(new Date().getFullYear());
 
-  const { isLoading, error, data } = useAll<any>("events");
+  const { isLoading, error, data } = useEvents(month, year);
 
   const { mutateAsync, data: newEvent } = useSaveEvent();
 
   const openModal = async (day: Date) => {
     setModalOpen(true);
-    setDay(day);
+    setSelectedDay(day);
   };
 
   const closeModal = async () => {
@@ -31,10 +33,19 @@ const Calendar = () => {
     <>
       <Title Icon={CalendarDaysIcon} text='Kalender' />
       <div className='mt-8'>
-        <BasicCalendar events={data} openModal={openModal} />
+        <BasicCalendar
+          events={data.events}
+          openModal={openModal}
+          setMonth={setMonth}
+          setYear={setYear}
+        />
       </div>
       {modalOpen && (
-        <Modal closeModal={closeModal} mutateAsync={mutateAsync} day={day} />
+        <Modal
+          closeModal={closeModal}
+          mutateAsync={mutateAsync}
+          day={selectedDay}
+        />
       )}
     </>
   );
