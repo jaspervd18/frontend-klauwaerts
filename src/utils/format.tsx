@@ -30,10 +30,23 @@ const formatMonthYear = (month: number, year: number) => {
   return format(new Date(year, month - 1), "MMMM yyyy", { locale: nl });
 };
 
+const calculateTotalHoursWorked = (events: BasicEvent[]) => {
+  return events.reduce((totalHours, event) => {
+    const start = new Date(event.start);
+    const end = new Date(event.end);
+    const startTime = start.getTime();
+    const endTime = end.getTime();
+    const diffInMilliseconds = endTime - startTime;
+    const hoursWorked = diffInMilliseconds / (1000 * 60 * 60);
+    return totalHours + hoursWorked;
+  }, 0);
+};
+
 export {
   formatCurrency,
   formatDate,
   formatDateTime,
   formatTime,
   formatMonthYear,
+  calculateTotalHoursWorked,
 };
