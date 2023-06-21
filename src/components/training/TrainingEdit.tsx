@@ -52,6 +52,9 @@ const TrainingEdit = ({ defaultValues }: TrainingWijzigenProps) => {
           autoComplete={defaultValues.title}
         />
       </div>
+      <div className='col-span-6 sm:col-span-2'>
+        <TrainerSelect register={register} error={errors.trainerId} />
+      </div>
       <div className='col-span-3 sm:col-span-2'>
         <Input
           label='Start'
@@ -72,9 +75,7 @@ const TrainingEdit = ({ defaultValues }: TrainingWijzigenProps) => {
           autoComplete={formatTime(defaultValues.end)}
         />
       </div>
-      <div className='col-span-3 sm:col-span-2'>
-        <TrainerSelect register={register} error={errors.trainerId} />
-      </div>
+
       <button
         type='submit'
         className='btn-primary col-span-full mt-2 self-center lg:col-start-5'
