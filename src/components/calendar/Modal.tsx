@@ -22,6 +22,12 @@ export const Modal = ({
     handleSubmit,
   } = useForm<EventInput>();
 
+  const options = [
+    { value: "Schermschool", label: "Schermschool" },
+    { value: "Volwassenen & Beloften", label: "Volwassenen & Beloften" },
+    { value: "Clubbeker", label: "Clubbeker" },
+  ];
+
   const onSubmit: SubmitHandler<EventInput> = (data) => {
     const start = new Date(day);
 
@@ -59,14 +65,19 @@ export const Modal = ({
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                   <label>Titel</label>
-                  <input
-                    type='text'
+                  <select
                     placeholder='Titel'
                     {...register("title", {
                       required: "Titel is verplicht",
                     })}
                     aria-invalid={errors?.title ? "true" : "false"}
-                  />
+                  >
+                    <option value='Schermschool'>Schermschool</option>
+                    <option value='Volwassenen & Beloften'>
+                      Volwassenen & Beloften
+                    </option>
+                    <option value='Clubbeker'>Clubbeker</option>
+                  </select>
                   <p className='h-5 text-sm text-gray-400 empty:invisible'>
                     {errors?.title?.message}
                   </p>

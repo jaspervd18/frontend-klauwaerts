@@ -28,7 +28,7 @@ const Pagination = ({ setMonth, setYear, month, year }: PaginationProps) => {
   };
 
   return (
-    <>
+    <div className='mx-auto flex w-60 items-center justify-between gap-2'>
       <button onClick={prevMonth}>
         <BackwardIcon className='h-5 w-5 shrink-0 stroke-1 hover:text-gray-500' />
       </button>
@@ -38,7 +38,7 @@ const Pagination = ({ setMonth, setYear, month, year }: PaginationProps) => {
       <button onClick={nextMonth}>
         <ForwardIcon className='h-5 w-5 shrink-0 stroke-1 hover:text-gray-500' />
       </button>
-    </>
+    </div>
   );
 };
 

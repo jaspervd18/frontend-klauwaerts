@@ -2,7 +2,7 @@ import { CalendarDaysIcon } from "@heroicons/react/24/outline";
 import Title from "../../components/misc/Title";
 import BasicCalendar from "../../components/calendar/BasicCalendar";
 import ErrorIsLoading from "../../components/misc/ErrorIsLoading";
-import { Modal } from "../../components/misc/Modal";
+import { Modal } from "../../components/calendar/Modal";
 import { useState } from "react";
 import useSaveEvent from "../../hooks/useSaveEvent";
 import useEvents from "../../hooks/useEvents";

@@ -14,7 +14,7 @@ const nav = [
 
 const userNav = [
   { name: "Account", to: "/account" },
-  { name: "Overzicht", to: "/overzicht" },
+  { name: "Uitbetalingen", to: "/uitbetalingen" },
   { name: "Uitloggen", to: "/logout" },
 ];
 

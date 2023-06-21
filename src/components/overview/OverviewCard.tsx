@@ -15,6 +15,10 @@ const OverviewCard = ({ name, degree, events }: OverviewProps) => {
           <dd>{name}</dd>
         </div>
         <div className='flex justify-between pt-6 sm:block sm:gap-1 sm:pt-0'>
+          <dt>Type diploma</dt>
+          <dd>{degree?.name}</dd>
+        </div>
+        <div className='flex justify-between pt-6 sm:block sm:gap-1 sm:pt-0'>
           <dt>Gepresteerde uren</dt>
           <dd>
             {calculateTotalHoursWorked(events)

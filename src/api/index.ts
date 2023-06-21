@@ -14,6 +14,10 @@ const getById = async (endpoint: EndpointById, id: number) => {
   return (await axios.get(`${endpoint}/${id}`)).data;
 };
 
+const deleteById = async (endpoint: EndpointById, id: number) => {
+  return (await axios.delete(`${endpoint}/${id}`)).data;
+};
+
 const getEventsByMonthYear = async (month: number, year: number) => {
   return (await axios.get(`/events?month=${month}&year=${year}`)).data;
 };
@@ -30,6 +34,7 @@ export {
   axios,
   getAll,
   getById,
+  deleteById,
   postNewEvent,
   putUpdatedEvent,
   getEventsByMonthYear,

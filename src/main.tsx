@@ -27,7 +27,7 @@ const router = createBrowserRouter(
             <Route index element={<Trainingen />} />
             <Route path=':id' element={<Training />} />
           </Route>
-          <Route path='overzicht' element={<Overview />} />
+          <Route path='uitbetalingen' element={<Overview />} />
           <Route path='*' element={<NotFound />} />
         </Route>
       </Route>

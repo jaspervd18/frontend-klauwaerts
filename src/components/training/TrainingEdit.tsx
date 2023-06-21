@@ -3,6 +3,7 @@ import useSaveEvent from "../../hooks/useSaveEvent";
 import TrainerSelect from "../misc/TrainerSelect";
 import Input from "../misc/Input";
 import { formatTime } from "../../utils/format";
+import useDeleteById from "../../hooks/useDeleteById";
 
 type TrainingWijzigenProps = {
   defaultValues: TFormInput;
@@ -37,53 +38,71 @@ const TrainingEdit = ({ defaultValues }: TrainingWijzigenProps) => {
     reset({ ...data, trainerId: Number(data.trainerId) });
   };
 
-  return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className='grid grid-cols-6 gap-4 py-6'
-    >
-      <div className='col-span-6 sm:col-span-4'>
-        <Input
-          label='Titel'
-          type='text'
-          register={register}
-          registerName='title'
-          error={errors.title}
-          autoComplete={defaultValues.title}
-        />
-      </div>
-      <div className='col-span-6 sm:col-span-2'>
-        <TrainerSelect register={register} error={errors.trainerId} />
-      </div>
-      <div className='col-span-3 sm:col-span-2'>
-        <Input
-          label='Start'
-          type='time'
-          register={register}
-          registerName='startTime'
-          error={errors.start}
-          autoComplete={formatTime(defaultValues.start)}
-        />
-      </div>
-      <div className='col-span-3 sm:col-span-2'>
-        <Input
-          label='Einde'
-          type='time'
-          register={register}
-          registerName='endTime'
-          error={errors.end}
-          autoComplete={formatTime(defaultValues.end)}
-        />
-      </div>
+  const { mutateAsync, data: oldEvent } = useDeleteById(
+    "events",
+    defaultValues.id,
+    new Date(defaultValues.start).getMonth() + 1,
+    new Date(defaultValues.end).getFullYear()
+  );
 
-      <button
-        type='submit'
-        className='btn-primary col-span-full mt-2 self-center lg:col-start-5'
-        disabled={!isDirty}
+  const deleteEvent = () => {
+    mutateAsync();
+  };
+
+  return (
+    <>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className='grid grid-cols-6 gap-4 py-6'
       >
-        Training aanpassen
+        <div className='col-span-6 sm:col-span-4'>
+          <Input
+            label='Titel'
+            type='text'
+            register={register}
+            registerName='title'
+            error={errors.title}
+            autoComplete={defaultValues.title}
+          />
+        </div>
+        <div className='col-span-6 sm:col-span-2'>
+          <TrainerSelect register={register} error={errors.trainerId} />
+        </div>
+        <div className='col-span-3 sm:col-span-2'>
+          <Input
+            label='Start'
+            type='time'
+            register={register}
+            registerName='startTime'
+            error={errors.start}
+            autoComplete={formatTime(defaultValues.start)}
+          />
+        </div>
+        <div className='col-span-3 sm:col-span-2'>
+          <Input
+            label='Einde'
+            type='time'
+            register={register}
+            registerName='endTime'
+            error={errors.end}
+            autoComplete={formatTime(defaultValues.end)}
+          />
+        </div>
+        <button
+          type='submit'
+          className='btn-primary  col-span-full mt-2 self-center md:col-span-1 '
+          disabled={!isDirty}
+        >
+          Training aanpassen
+        </button>
+      </form>
+      <button
+        onClick={deleteEvent}
+        className='col-span-full mt-2 h-fit w-fit self-center rounded-md bg-red-600 px-4 py-2 font-medium text-white hover:bg-red-700 md:col-span-1 '
+      >
+        Training verwijderen
       </button>
-    </form>
+    </>
   );
 };
 
