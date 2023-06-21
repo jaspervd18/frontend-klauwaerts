@@ -1,11 +1,11 @@
 import { CalendarDaysIcon } from "@heroicons/react/24/outline";
-import Title from "../components/misc/Title";
-import BasicCalendar from "../components/calendar/BasicCalendar";
-import ErrorIsLoading from "../components/misc/ErrorIsLoading";
-import { Modal } from "../components/misc/Modal";
+import Title from "../../components/misc/Title";
+import BasicCalendar from "../../components/calendar/BasicCalendar";
+import ErrorIsLoading from "../../components/misc/ErrorIsLoading";
+import { Modal } from "../../components/misc/Modal";
 import { useState } from "react";
-import useSaveEvent from "../hooks/useSaveEvent";
-import useEvents from "../hooks/useEvents";
+import useSaveEvent from "../../hooks/useSaveEvent";
+import useEvents from "../../hooks/useEvents";
 
 const Calendar = () => {
   const [modalOpen, setModalOpen] = useState(false);
