@@ -9,12 +9,13 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import Calendar from "./pages/Calendar";
+import Calendar from "./pages/calendar/Calendar";
 import NotFound from "./pages/misc/NotFound";
 import ErrorBoundary from "./pages/misc/ErrorBoundary";
 import Layout from "./components/layout/Layout";
 import Trainingen from "./pages/training/Trainingen";
 import Training from "./pages/training/Training";
+import Overview from "./pages/overview/Overview";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
             <Route index element={<Trainingen />} />
             <Route path=':id' element={<Training />} />
           </Route>
+          <Route path='overzicht' element={<Overview />} />
           <Route path='*' element={<NotFound />} />
         </Route>
       </Route>
