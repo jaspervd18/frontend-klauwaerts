@@ -32,6 +32,13 @@ type SaveEvent = {
 type Trainer = {
   id: number;
   name: string;
+  degree?: Degree;
+};
+
+type Degree = {
+  id: number;
+  name: string;
+  payment: number;
 };
 
 /**************
