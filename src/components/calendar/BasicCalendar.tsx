@@ -15,9 +15,7 @@ const BasicCalendar = ({
   setMonth: (month: number) => void;
   setYear: (month: number) => void;
 }) => {
-  const calendarEvents: CalendarEvent[] = events.map(
-    ({ id, trainer, ...rest }) => rest
-  );
+  const calendarEvents: BasicEvent[] = events.map(({ ...rest }) => rest);
 
   return (
     <Calendar
