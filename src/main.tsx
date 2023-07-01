@@ -15,7 +15,8 @@ import ErrorBoundary from "./pages/misc/ErrorBoundary";
 import Layout from "./components/layout/Layout";
 import Trainingen from "./pages/training/Trainingen";
 import Training from "./pages/training/Training";
-import Overview from "./pages/overview/Overview";
+import Overview from "./pages/misc/Overview";
+import Manage from "./pages/misc/Manage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
             <Route path=':id' element={<Training />} />
           </Route>
           <Route path='uitbetalingen' element={<Overview />} />
+          <Route path='beheer' element={<Manage />} />
           <Route path='*' element={<NotFound />} />
         </Route>
       </Route>

@@ -13,7 +13,7 @@ const nav = [
 ];
 
 const userNav = [
-  { name: "Account", to: "/account" },
+  { name: "Beheer", to: "/beheer" },
   { name: "Uitbetalingen", to: "/uitbetalingen" },
   { name: "Uitloggen", to: "/logout" },
 ];
