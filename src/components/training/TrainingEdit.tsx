@@ -38,7 +38,7 @@ const TrainingEdit = ({ defaultValues }: TrainingWijzigenProps) => {
     reset({ ...data, trainerId: Number(data.trainerId) });
   };
 
-  const { mutateAsync, data: oldEvent } = useDeleteById(
+  const { mutateAsync } = useDeleteById(
     "events",
     defaultValues.id,
     new Date(defaultValues.start).getMonth() + 1,

@@ -77,6 +77,11 @@ export const Modal = ({
                       Volwassenen & Beloften
                     </option>
                     <option value='Clubbeker'>Clubbeker</option>
+                    {options.map((o) => (
+                      <option key={o.value} value={o.value}>
+                        {o.label}
+                      </option>
+                    ))}
                   </select>
                   <p className='h-5 text-sm text-gray-400 empty:invisible'>
                     {errors?.title?.message}

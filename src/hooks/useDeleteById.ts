@@ -4,7 +4,7 @@ import { deleteById } from "../api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-export default function useDeleteById<T>(
+export default function useDeleteById(
   endpoint: EndpointById,
   id: number,
   month: number,

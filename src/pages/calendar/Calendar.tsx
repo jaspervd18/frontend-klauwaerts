@@ -15,7 +15,7 @@ const Calendar = () => {
 
   const { isLoading, error, data } = useEvents(month, year);
 
-  const { mutateAsync, data: newEvent } = useSaveEvent();
+  const { mutateAsync } = useSaveEvent();
 
   const openModal = async (day: Date) => {
     setModalOpen(true);

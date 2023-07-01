@@ -12,7 +12,6 @@ const Trainingen = () => {
   const [year, setYear] = useState(new Date().getFullYear());
 
   const { isLoading, error, data } = useEvents(month, year);
-  const navigate = useNavigate();
 
   if (error || isLoading)
     return <ErrorIsLoading text='events' isLoading={isLoading} />;
