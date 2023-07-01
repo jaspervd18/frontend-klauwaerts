@@ -17,6 +17,8 @@ const BasicCalendar = ({
 }) => {
   const calendarEvents: BasicEvent[] = events.map(({ ...rest }) => rest);
 
+  console.log(events);
+
   return (
     <Calendar
       defaultView='month'

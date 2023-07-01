@@ -1,9 +1,8 @@
 import axiosRoot, { AxiosInstance } from "axios";
-import config from "../config.json";
 
 const axios: AxiosInstance = axiosRoot.create({
-  // baseURL: import.meta.env.VITE_API_URL,
-  baseURL: config.base_url,
+  baseURL: import.meta.env.VITE_API_URL,
+  // baseURL: config.base_url,
 });
 
 const getAll = async (endpoint: EndpointAll, params?: LimitOffset) => {
