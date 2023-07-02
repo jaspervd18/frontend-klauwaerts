@@ -17,6 +17,8 @@ import Trainingen from "./pages/training/Trainingen";
 import Training from "./pages/training/Training";
 import Overview from "./pages/misc/Overview";
 import Manage from "./pages/misc/Manage";
+import Leden from "./components/manage/Leden";
+import Tarieven from "./components/manage/Tarieven";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +32,8 @@ const router = createBrowserRouter(
           </Route>
           <Route path='uitbetalingen' element={<Overview />} />
           <Route path='beheer' element={<Manage />} />
+          <Route path='beheer/leden' element={<Leden />} />
+          <Route path='beheer/tarieven' element={<Tarieven />} />
           <Route path='*' element={<NotFound />} />
         </Route>
       </Route>

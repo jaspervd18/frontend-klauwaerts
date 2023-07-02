@@ -7,7 +7,7 @@ export function SideNav() {
     <nav className='sticky top-0 px-2 py-4'>
       <ul className='flex flex-col items-start gap-2 whitespace-nowrap'>
         <li>
-          <Link to={"/beheer/"}>
+          <Link to={"/beheer/leden"}>
             <IconHoverEffect>
               <span className='flex items-center gap-4'>
                 <UserIcon className='h-8 w-8' />
@@ -17,7 +17,7 @@ export function SideNav() {
           </Link>
         </li>
         <li>
-          <Link to={`/beheer/`}>
+          <Link to={`/beheer/tarieven`}>
             <IconHoverEffect>
               <span className='flex items-center gap-4'>
                 <BanknotesIcon className='h-8 w-8' />
