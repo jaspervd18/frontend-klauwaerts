@@ -1,7 +1,7 @@
 import { SquaresPlusIcon } from "@heroicons/react/24/outline";
-import { useParams } from "react-router-dom";
-import useById from "../../hooks/useById";
-import ErrorIsLoading from "../../components/misc/ErrorIsLoading";
+// import { useParams } from "react-router-dom";
+// import useById from "../../hooks/useById";
+// import ErrorIsLoading from "../../components/misc/ErrorIsLoading";
 import Title from "../../components/misc/Title";
 import { SideNav } from "../../components/misc/SideNav";
 
