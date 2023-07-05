@@ -19,6 +19,8 @@ const BasicCalendar = ({
   setMonth,
   setYear,
 }: BasicCalendarProps) => {
+  console.log(competitions);
+
   return (
     <Calendar
       defaultView='month'
