@@ -2,7 +2,6 @@ import axiosRoot, { AxiosInstance } from "axios";
 
 const axios: AxiosInstance = axiosRoot.create({
   baseURL: import.meta.env.VITE_API_URL,
-  // baseURL: config.base_url,
 });
 
 const getAll = async (endpoint: EndpointAll, params?: LimitOffset) => {
@@ -29,6 +28,14 @@ const putUpdatedEvent = async (event: SaveEvent) => {
   return (await axios.put(`/events/${event.id}`, event)).data;
 };
 
+const postNewCompetition = async (competition: SaveCompetition) => {
+  return (await axios.post("/competitions", competition)).data;
+};
+
+const putUpdatedCompetition = async (competition: SaveCompetition) => {
+  return (await axios.put(`/competitions/${competition.id}`, competition)).data;
+};
+
 export {
   axios,
   getAll,
@@ -37,4 +44,6 @@ export {
   postNewEvent,
   putUpdatedEvent,
   getEventsByMonthYear,
+  postNewCompetition,
+  putUpdatedCompetition,
 };
