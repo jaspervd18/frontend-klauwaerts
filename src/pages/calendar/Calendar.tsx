@@ -4,7 +4,6 @@ import BasicCalendar from "../../components/calendar/BasicCalendar";
 import ErrorIsLoading from "../../components/misc/ErrorIsLoading";
 import { Modal } from "../../components/calendar/Modal";
 import { useState } from "react";
-import useSaveEvent from "../../hooks/useSaveEvent";
 import useEvents from "../../hooks/useEvents";
 
 const Calendar = () => {
@@ -14,8 +13,6 @@ const Calendar = () => {
   const [year, setYear] = useState(new Date().getFullYear());
 
   const { isLoading, error, data } = useEvents(month, year);
-
-  const { mutateAsync } = useSaveEvent();
 
   const openModal = async (day: Date) => {
     setModalOpen(true);
@@ -40,13 +37,7 @@ const Calendar = () => {
           setYear={setYear}
         />
       </div>
-      {modalOpen && (
-        <Modal
-          closeModal={closeModal}
-          mutateAsync={mutateAsync}
-          day={selectedDay}
-        />
-      )}
+      {modalOpen && <Modal closeModal={closeModal} day={selectedDay} />}
     </>
   );
 };
