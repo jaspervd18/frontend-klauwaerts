@@ -2,7 +2,7 @@
  * Endpoint types *
  ******************/
 
-type EndpointAll = "events" | "trainers";
+type EndpointAll = "events" | "trainers" | "competitions";
 
 type EndpointById = "events" | "trainers";
 

@@ -28,6 +28,10 @@ const putUpdatedEvent = async (event: SaveEvent) => {
   return (await axios.put(`/events/${event.id}`, event)).data;
 };
 
+const getCompetitionsByMonthYear = async (month: number, year: number) => {
+  return (await axios.get(`/competitions?month=${month}&year=${year}`)).data;
+};
+
 const postNewCompetition = async (competition: SaveCompetition) => {
   return (await axios.post("/competitions", competition)).data;
 };
@@ -46,4 +50,5 @@ export {
   getEventsByMonthYear,
   postNewCompetition,
   putUpdatedCompetition,
+  getCompetitionsByMonthYear,
 };

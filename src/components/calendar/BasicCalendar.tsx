@@ -4,23 +4,33 @@ import moment from "moment";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
-const BasicCalendar = ({
-  events,
-  openModal,
-  setMonth,
-  setYear,
-}: {
+interface BasicCalendarProps {
   events: BasicEvent[];
+  competitions: Competition[];
   openModal: (day: Date) => void;
   setMonth: (month: number) => void;
   setYear: (month: number) => void;
-}) => {
-  const calendarEvents: BasicEvent[] = events.map(({ ...rest }) => rest);
+}
 
+const BasicCalendar = ({
+  events,
+  competitions,
+  openModal,
+  setMonth,
+  setYear,
+}: BasicCalendarProps) => {
   return (
     <Calendar
       defaultView='month'
-      events={calendarEvents}
+      events={competitions
+        .map((comp) => {
+          return {
+            ...comp,
+            start: new Date(comp.date),
+            end: new Date(comp.date),
+          };
+        })
+        .concat(events)}
       localizer={localizer}
       style={{ height: "100vh", width: "100%" }}
       messages={{

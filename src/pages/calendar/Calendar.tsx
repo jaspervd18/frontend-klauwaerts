@@ -5,6 +5,7 @@ import ErrorIsLoading from "../../components/misc/ErrorIsLoading";
 import { Modal } from "../../components/calendar/Modal";
 import { useState } from "react";
 import useEvents from "../../hooks/useEvents";
+import useCompetitions from "../../hooks/useCompetitions";
 
 const Calendar = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -12,7 +13,16 @@ const Calendar = () => {
   const [month, setMonth] = useState(new Date().getMonth() + 1);
   const [year, setYear] = useState(new Date().getFullYear());
 
-  const { isLoading, error, data } = useEvents(month, year);
+  const {
+    isLoading: isLoadingEvents,
+    error: errorEvents,
+    data: events,
+  } = useEvents(month, year);
+  const {
+    isLoading: isLoadingCompetitions,
+    error: errorCompetitions,
+    data: competitions,
+  } = useCompetitions(month, year);
 
   const openModal = async (day: Date) => {
     setModalOpen(true);
@@ -23,15 +33,21 @@ const Calendar = () => {
     setModalOpen(false);
   };
 
-  if (error || isLoading)
-    return <ErrorIsLoading text='kalender' isLoading={isLoading} />;
+  if (
+    isLoadingEvents ||
+    isLoadingCompetitions ||
+    errorEvents ||
+    errorCompetitions
+  )
+    return <ErrorIsLoading text='kalender' isLoading={isLoadingEvents} />;
 
   return (
     <>
       <Title Icon={CalendarDaysIcon} text='Kalender' />
       <div className='mt-8'>
         <BasicCalendar
-          events={data.events}
+          events={events.events}
+          competitions={competitions.competitions}
           openModal={openModal}
           setMonth={setMonth}
           setYear={setYear}
