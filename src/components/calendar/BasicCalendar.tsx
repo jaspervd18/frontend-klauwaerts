@@ -22,15 +22,16 @@ const BasicCalendar = ({
   return (
     <Calendar
       defaultView='month'
-      events={competitions
-        .map((comp) => {
-          return {
-            ...comp,
-            start: new Date(comp.date),
-            end: new Date(comp.date),
-          };
-        })
-        .concat(events)}
+      // events={competitions
+      //   .map((comp) => {
+      //     return {
+      //       ...comp,
+      //       start: new Date(comp.date),
+      //       end: new Date(comp.date),
+      //     };
+      // })
+      // .concat(events)}
+      events={events}
       localizer={localizer}
       style={{ height: "100vh", width: "100%" }}
       messages={{
