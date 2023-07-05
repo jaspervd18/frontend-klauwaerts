@@ -38,6 +38,22 @@ type Degree = {
   payment: number;
 };
 
+type Competition = {
+  id: number;
+  type: string;
+  title: string;
+  date: Date;
+};
+
+type SaveCompetition = {
+  id?: number;
+  type: string;
+  title: string;
+  date: Date;
+  refereeId?: refereeId;
+  coachId?: coachId;
+};
+
 /**************
  * Misc Types *
  **************/
