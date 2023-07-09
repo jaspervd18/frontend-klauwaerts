@@ -13,12 +13,12 @@ import Calendar from "./pages/calendar/Calendar";
 import NotFound from "./pages/misc/NotFound";
 import ErrorBoundary from "./pages/misc/ErrorBoundary";
 import Layout from "./components/layout/Layout";
-import Trainingen from "./pages/training/Trainingen";
-import Training from "./pages/training/Training";
 import Overview from "./pages/misc/Overview";
 import Manage from "./pages/misc/Manage";
 import Leden from "./components/manage/Leden";
 import Tarieven from "./components/manage/Tarieven";
+import Events from "./pages/event/Events";
+import Event from "./pages/event/Event";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,8 +27,8 @@ const router = createBrowserRouter(
         <Route errorElement={<ErrorBoundary />}>
           <Route index element={<Calendar />} />
           <Route path='trainingen'>
-            <Route index element={<Trainingen />} />
-            <Route path=':id' element={<Training />} />
+            <Route index element={<Events />} />
+            <Route path=':id' element={<Event />} />
           </Route>
           <Route path='uitbetalingen' element={<Overview />} />
           <Route path='beheer' element={<Manage />} />

@@ -2,12 +2,12 @@ import { useState } from "react";
 import { QueueListIcon } from "@heroicons/react/24/outline";
 import ErrorIsLoading from "../../components/misc/ErrorIsLoading";
 import Title from "../../components/misc/Title";
-import TrainingCard from "../../components/training/TrainingCard";
 import useEvents from "../../hooks/useEvents";
 import Pagination from "../../components/misc/Pagination";
 import { useNavigate } from "react-router-dom";
+import EventCard from "../../components/training/EventCard";
 
-const Trainingen = () => {
+const Events = () => {
   const [month, setMonth] = useState(new Date().getMonth() + 1);
   const [year, setYear] = useState(new Date().getFullYear());
 
@@ -26,7 +26,7 @@ const Trainingen = () => {
         year={year}
       />
       {data.events.length === 0 ? (
-        <EmptyTrainingen />
+        <EmptyEvents />
       ) : (
         <section className='mt-4 flex flex-col gap-2'>
           {data.events
@@ -35,7 +35,7 @@ const Trainingen = () => {
                 new Date(a.start).getTime() - new Date(b.start).getTime()
             )
             .map((event: BasicEvent) => (
-              <TrainingCard key={event.id} {...event} />
+              <EventCard key={event.id} {...event} />
             ))}
         </section>
       )}
@@ -43,18 +43,18 @@ const Trainingen = () => {
   );
 };
 
-const EmptyTrainingen = () => {
+const EmptyEvents = () => {
   const navigate = useNavigate();
   return (
     <div className='mt-8'>
       <h2 className='mb-4 text-xl'>
-        Er zijn geen trainingen voor deze maand...
+        Er zijn geen trainingen/wedstrijden voor deze maand...
       </h2>
       <button className='btn-primary' onClick={() => navigate("/")}>
-        Training toevoegen
+        Training/Wedstrijd toevoegen
       </button>
     </div>
   );
 };
 
-export default Trainingen;
+export default Events;
