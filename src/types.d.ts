@@ -13,7 +13,10 @@ type EndpointById = "events" | "trainers";
 type BasicEvent = {
   id: number;
   trainer?: Trainer;
+  referee?: Trainer;
+  coach?: Trainer;
   title: string;
+  type?: string;
   start: Date;
   end: Date;
 };
@@ -21,9 +24,12 @@ type BasicEvent = {
 type SaveEvent = {
   id?: number;
   title: string;
+  type?: string;
   start: Date;
   end: Date;
   trainerId?: trainerId;
+  refereeId?: refereeId;
+  coachId?: coachId;
 };
 
 type Trainer = {
@@ -36,22 +42,6 @@ type Degree = {
   id: number;
   name: string;
   payment: number;
-};
-
-type Competition = {
-  id: number;
-  type: string;
-  title: string;
-  date: Date;
-};
-
-type SaveCompetition = {
-  id?: number;
-  type: string;
-  title: string;
-  date: Date;
-  refereeId?: refereeId;
-  coachId?: coachId;
 };
 
 /**************
@@ -67,4 +57,10 @@ type TFormInput = BasicEvent & {
 type LimitOffset = {
   limit?: number;
   offset?: number;
+};
+
+type ModalProps = {
+  closeModal: () => void;
+  mutateAsync: UseMutateAsyncFunction<BasicEvent, unknown, SaveEvent, unknown>;
+  day: Date;
 };

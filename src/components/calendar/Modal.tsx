@@ -3,7 +3,6 @@ import TrainingModal from "./TrainingModal";
 import { useState } from "react";
 import CompetitionModal from "./CompetitionModal";
 import useSaveEvent from "../../hooks/useSaveEvent";
-import useSaveCompetition from "../../hooks/useSaveCompetition";
 
 interface ModalProps {
   closeModal: () => void;
@@ -13,8 +12,7 @@ interface ModalProps {
 export const Modal = ({ closeModal, day }: ModalProps) => {
   const [event, setEvent] = useState("Training");
 
-  const { mutateAsync: mutateEvent } = useSaveEvent();
-  const { mutateAsync: mutateCompetition } = useSaveCompetition();
+  const { mutateAsync } = useSaveEvent();
 
   return (
     <>
@@ -36,13 +34,13 @@ export const Modal = ({ closeModal, day }: ModalProps) => {
               {event === "Training" ? (
                 <TrainingModal
                   closeModal={closeModal}
-                  mutateAsync={mutateEvent}
+                  mutateAsync={mutateAsync}
                   day={day}
                 />
               ) : (
                 <CompetitionModal
                   closeModal={closeModal}
-                  mutateAsync={mutateCompetition}
+                  mutateAsync={mutateAsync}
                   day={day}
                 />
               )}

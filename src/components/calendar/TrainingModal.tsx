@@ -1,4 +1,3 @@
-import { UseMutateAsyncFunction } from "@tanstack/react-query";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 interface EventInput {
@@ -7,17 +6,7 @@ interface EventInput {
   end: string;
 }
 
-interface TrainingModalProps {
-  closeModal: () => void;
-  mutateAsync: UseMutateAsyncFunction<BasicEvent, unknown, SaveEvent, unknown>;
-  day: Date;
-}
-
-const TrainingModal = ({
-  closeModal,
-  mutateAsync,
-  day,
-}: TrainingModalProps) => {
+const TrainingModal = ({ closeModal, mutateAsync, day }: ModalProps) => {
   const {
     register,
     formState: { errors },

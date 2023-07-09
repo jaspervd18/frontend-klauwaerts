@@ -1,33 +1,18 @@
-import { UseMutateAsyncFunction } from "@tanstack/react-query";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-interface CompetitionInput {
-  type: string;
+interface EventInput {
   title: string;
-  date: string;
+  type: string;
+  start: string;
+  end: string;
 }
 
-interface CompetitionModalProps {
-  closeModal: () => void;
-  mutateAsync: UseMutateAsyncFunction<
-    Competition,
-    unknown,
-    SaveCompetition,
-    unknown
-  >;
-  day: Date;
-}
-
-const CompetitionModal = ({
-  closeModal,
-  mutateAsync,
-  day,
-}: CompetitionModalProps) => {
+const CompetitionModal = ({ closeModal, mutateAsync, day }: ModalProps) => {
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<CompetitionInput>();
+  } = useForm<EventInput>();
 
   const options = [
     { value: "Regionaal", label: "Regionaal" },
@@ -35,12 +20,14 @@ const CompetitionModal = ({
     { value: "Internationaal", label: "Internationaal" },
   ];
 
-  const onSubmit: SubmitHandler<CompetitionInput> = (data) => {
-    const date = new Date(day);
+  const onSubmit: SubmitHandler<EventInput> = (data) => {
+    const start = new Date(day);
+    const end = new Date(day);
     mutateAsync({
       ...data,
       id: undefined,
-      date: date,
+      start: start,
+      end: end,
     });
     closeModal();
   };

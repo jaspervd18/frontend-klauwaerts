@@ -6,7 +6,6 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 
 interface BasicCalendarProps {
   events: BasicEvent[];
-  competitions: Competition[];
   openModal: (day: Date) => void;
   setMonth: (month: number) => void;
   setYear: (month: number) => void;
@@ -14,25 +13,13 @@ interface BasicCalendarProps {
 
 const BasicCalendar = ({
   events,
-  competitions,
   openModal,
   setMonth,
   setYear,
 }: BasicCalendarProps) => {
-  console.log(competitions);
-
   return (
     <Calendar
       defaultView='month'
-      // events={competitions
-      //   .map((comp) => {
-      //     return {
-      //       ...comp,
-      //       start: new Date(comp.date),
-      //       end: new Date(comp.date),
-      //     };
-      // })
-      // .concat(events)}
       events={events}
       localizer={localizer}
       style={{ height: "100vh", width: "100%" }}
