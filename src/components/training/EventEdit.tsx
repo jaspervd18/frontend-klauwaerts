@@ -9,7 +9,7 @@ type TrainingWijzigenProps = {
   defaultValues: TFormInput;
 };
 
-const TrainingEdit = ({ defaultValues }: TrainingWijzigenProps) => {
+const EventEdit = ({ defaultValues }: TrainingWijzigenProps) => {
   const {
     register,
     formState: { errors, isDirty },
@@ -106,4 +106,4 @@ const TrainingEdit = ({ defaultValues }: TrainingWijzigenProps) => {
   );
 };
 
-export default TrainingEdit;
+export default EventEdit;

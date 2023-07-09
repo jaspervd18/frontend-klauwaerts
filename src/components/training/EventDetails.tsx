@@ -1,5 +1,5 @@
 import { formatDate, formatTime } from "../../utils/format";
-import TrainingEdit from "./TrainingEdit";
+import EventEdit from "./EventEdit";
 
 const EventDetails = ({
   id,
@@ -51,7 +51,7 @@ const EventDetails = ({
         )}
       </dl>
     </div>
-    <TrainingEdit
+    <EventEdit
       defaultValues={{
         id: id,
         title: title,

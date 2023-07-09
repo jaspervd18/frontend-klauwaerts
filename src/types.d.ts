@@ -50,6 +50,8 @@ type Degree = {
 
 type TFormInput = BasicEvent & {
   trainerId: number;
+  refereeId?: number;
+  coachId?: number;
   startTime: string;
   endTime: string;
 };
