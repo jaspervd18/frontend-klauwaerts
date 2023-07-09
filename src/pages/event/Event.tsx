@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import useById from "../../hooks/useById";
 import ErrorIsLoading from "../../components/misc/ErrorIsLoading";
 import Title from "../../components/misc/Title";
-import TrainingDetails from "../../components/training/TrainingDetails";
+import EventDetails from "../../components/training/EventDetails";
 
 const Event = () => {
   const { id } = useParams() as unknown as { id: number };
@@ -15,7 +15,7 @@ const Event = () => {
   return (
     <>
       <Title Icon={ClipboardDocumentIcon} text={event.title} />
-      <TrainingDetails {...event} />
+      <EventDetails {...event} />
     </>
   );
 };
