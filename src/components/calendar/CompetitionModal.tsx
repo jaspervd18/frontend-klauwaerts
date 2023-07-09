@@ -28,6 +28,7 @@ const CompetitionModal = ({ closeModal, mutateAsync, day }: ModalProps) => {
       id: undefined,
       start: start,
       end: end,
+      type: data.type,
     });
     closeModal();
   };
